@@ -9,6 +9,7 @@ are used to control the playback.
 #
 # Copyright (c) 2013, Digium, Inc.
 #
+from logging import error
 
 import ari
 import sys
@@ -52,7 +53,8 @@ def on_start(channel, event):
             playback.stop()
             channel.continueInDialplan()
         else:
-            print >> sys.stderr, "Unknown DTMF %s" % digit
+            # print >> sys.stderr, "Unknown DTMF %s" % digit
+            error("Unknown DTMF %s" % digit)
 
     channel.on_event('ChannelDtmfReceived', on_dtmf)
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env python
+from urllib.request import urlopen
 
 import ari
 import httpretty
 import json
 import requests
 import unittest
-import urllib
+# import urllib
 
 from ari_test.utils import AriTestCase
-
 
 GET = httpretty.GET
 PUT = httpretty.PUT
@@ -19,7 +19,8 @@ DELETE = httpretty.DELETE
 # noinspection PyDocstring
 class ClientTest(AriTestCase):
     def test_docs(self):
-        fp = urllib.urlopen("http://ari.py/ari/api-docs/resources.json")
+        # fp = urllib.urlopen("http://ari.py/ari/api-docs/resources.json")
+        fp = urlopen("http://ari.py/ari/api-docs/resources.json")
         try:
             actual = json.load(fp)
             self.assertEqual(self.BASE_URL, actual['basePath'])

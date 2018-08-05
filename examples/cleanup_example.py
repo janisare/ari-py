@@ -68,8 +68,8 @@ def run():
 
 
 thr = thread.start_new_thread(run, ())
-print "Press enter to exit"
+print("Press enter to exit")
 sys.stdin.readline()
 client.close()
 sync.acquire()
-print "Application finished"
+print("Application finished")

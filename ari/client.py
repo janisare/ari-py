@@ -7,7 +7,9 @@
 
 import json
 import logging
-import urlparse
+# import urlparse
+from urllib.parse import urljoin
+
 import swaggerpy.client
 
 from ari.model import *
@@ -23,7 +25,8 @@ class Client(object):
     """
 
     def __init__(self, base_url, http_client):
-        url = urlparse.urljoin(base_url, "ari/api-docs/resources.json")
+        # url = urlparse.urljoin(base_url, "ari/api-docs/resources.json")
+        url = urljoin(base_url, "ari/api-docs/resources.json")
 
         self.swagger = swaggerpy.client.SwaggerClient(
             url, http_client=http_client)

@@ -254,7 +254,7 @@ def raise_exceptions(ex):
 
     :param ex: Exception caught by the event loop.
     """
-    raise
+    raise ex
 
 
 def connect(base_url, messages):
