@@ -10,7 +10,7 @@
 import ari
 import logging
 import sys
-import thread
+# import thread
 
 logging.basicConfig()
 

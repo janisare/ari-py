@@ -10,6 +10,7 @@ import logging
 # import urlparse
 from urllib.parse import urljoin
 
+
 import swaggerpy.client
 
 from ari.model import *

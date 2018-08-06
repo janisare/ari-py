@@ -4,10 +4,11 @@
 
 """ARI client library
 """
+from urllib.parse import urlsplit
 
 import ari.client
 import swaggerpy.http_client
-import urlparse
+# import urlparse
 
 Client = client.Client
 
@@ -20,7 +21,8 @@ def connect(base_url, username, password):
     :param password: ARI password.
     :return:
     """
-    split = urlparse.urlsplit(base_url)
+    # split = urlparse.urlsplit(base_url)
+    split = urlsplit(base_url)
     http_client = swaggerpy.http_client.SynchronousHttpClient()
     http_client.set_basic_auth(split.hostname, username, password)
     return Client(base_url, http_client)
