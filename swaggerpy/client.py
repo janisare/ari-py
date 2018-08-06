@@ -9,8 +9,7 @@ import json
 import logging
 import os.path
 import re
-import urllib
-import swaggerpy
+from urllib.parse import urlencode, quote_plus
 
 from swaggerpy.http_client import SynchronousHttpClient
 from swaggerpy.processors import WebsocketProcessor, SwaggerProcessor
@@ -53,7 +52,7 @@ class Operation(object):
         :param kwargs: ARI operation arguments.
         :return: Implementation specific response or WebSocket connection
         """
-        log.info("%s?%r" % (self.json['nickname'], urllib.urlencode(kwargs)))
+        log.info("%s?%r" % (self.json['nickname'], urlencode(kwargs)))
         method = self.json['httpMethod']
         uri = self.uri
         params = {}
@@ -69,7 +68,7 @@ class Operation(object):
             if value is not None:
                 if param['paramType'] == 'path':
                     uri = uri.replace('{%s}' % pname,
-                                      urllib.quote_plus(str(value)))
+                                      quote_plus(str(value)))
                 elif param['paramType'] == 'query':
                     params[pname] = value
                 elif param['paramType'] == 'body':

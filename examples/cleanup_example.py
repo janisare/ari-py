@@ -6,6 +6,7 @@
 #
 # Copyright (c) 2013, Digium, Inc.
 #
+from _thread import allocate_lock, start_new_thread
 
 import ari
 import logging
@@ -56,7 +57,7 @@ def on_start(channel, event):
 client.on_channel_event('StasisStart', on_start)
 
 # Run the WebSocket
-sync = thread.allocate_lock()
+sync = allocate_lock()
 
 
 def run():
@@ -67,7 +68,7 @@ def run():
     sync.release()
 
 
-thr = thread.start_new_thread(run, ())
+thr = start_new_thread(run, ())
 print("Press enter to exit")
 sys.stdin.readline()
 client.close()

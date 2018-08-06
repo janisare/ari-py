@@ -28,5 +28,5 @@ setup(
         "Programming Language :: Python",
     ],
     tests_require=["coverage", "httpretty", "nose", "tissue"],
-    install_requires=["swaggerpy", 'requests'],
+    install_requires=["swaggerpy", 'requests', 'websocket'],
 )

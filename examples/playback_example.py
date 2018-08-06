@@ -12,7 +12,6 @@ are used to control the playback.
 from logging import error
 
 import ari
-import sys
 
 client = ari.connect('http://localhost:8088/', 'hey', 'peekaboo')
 

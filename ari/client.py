@@ -6,7 +6,6 @@
 """
 
 import json
-import logging
 # import urlparse
 from urllib.parse import urljoin
 
