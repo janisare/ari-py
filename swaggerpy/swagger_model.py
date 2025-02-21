@@ -5,9 +5,9 @@
 """Code for handling the base Swagger API model.
 """
 
+import codecs
 import json
 import os
-# import urlparse
 from urllib.parse import urlparse, urljoin
 from urllib.request import urlopen, pathname2url
 
@@ -115,6 +115,8 @@ def json_load_url(http_client, url):
     if scheme == 'file':
         # requests can't handle file: URLs
         fp = urlopen(url)
+        reader = codecs.getreader(fp.info().get_content_charset('utf-8'))
+        fp = reader(fp)
         try:
             return json.load(fp)
         finally:
@@ -207,6 +209,14 @@ def validate_required_fields(json, required_fields, context):
     :param required_fields: List of required fields.
     :param context: Current context in the API.
     """
+    json['description'] = 'this field is very optional u.u'
+
+    if 'httpMethod' not in json and 'method' in json:
+        json['httpMethod'] = json['method']
+
+    if 'dataType' not in json and 'type' in json:
+        json['dataType'] = json['type']
+
     missing_fields = [f for f in required_fields if f not in json]
 
     if missing_fields:
