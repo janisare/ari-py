@@ -367,6 +367,8 @@ def promote(client, resp, operation_json):
         return factory(client, resp_json)
     if resp.status_code == requests.codes.no_content:
         return None
+    if response_class == 'binary':
+        return resp.content
     log.info("No mapping for %s; returning JSON" % response_class)
     return resp.json()
 

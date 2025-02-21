@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from urllib.request import urlopen
 
 import ari
 import httpretty
@@ -7,6 +6,8 @@ import json
 import requests
 import unittest
 # import urllib
+from urllib.request import urlopen
+import codecs
 
 from ari_test.utils import AriTestCase
 
@@ -22,7 +23,8 @@ class ClientTest(AriTestCase):
         # fp = urllib.urlopen("http://ari.py/ari/api-docs/resources.json")
         fp = urlopen("http://ari.py/ari/api-docs/resources.json")
         try:
-            actual = json.load(fp)
+            actual = json.load(codecs.getreader('utf-8')(fp))
+            # actual = json.load(fp)
             self.assertEqual(self.BASE_URL, actual['basePath'])
         finally:
             fp.close()

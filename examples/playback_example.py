@@ -12,6 +12,7 @@ are used to control the playback.
 from logging import error
 
 import ari
+import sys
 
 client = ari.connect('http://localhost:8088/', 'hey', 'peekaboo')
 
@@ -53,7 +54,7 @@ def on_start(channel, event):
             channel.continueInDialplan()
         else:
             # print >> sys.stderr, "Unknown DTMF %s" % digit
-            error("Unknown DTMF %s" % digit)
+            print("Unknown DTMF %s" % digit, file=sys.stderr)
 
     channel.on_event('ChannelDtmfReceived', on_dtmf)
 

@@ -42,7 +42,6 @@ class AriTestCase(unittest.TestCase):
         """
         url = cls.BASE_URL
         for arg in args:
-            # url = urlparse.urljoin(url + '/', arg)
             url = urljoin(url + '/', arg)
         return url
 
